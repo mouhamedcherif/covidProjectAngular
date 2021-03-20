@@ -1,0 +1,81 @@
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">admin </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item active">
+          <a class="nav-link" [routerLink]="['/listhopital']">liste des rendez-vous</a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" routerLink="['/addhopital']" routerLinkActive="active-item">affectation rende-vous</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+<div class="container">
+
+<form [formGroup]="myForm" (ngSubmit)="saveRdv()" >
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="inputdate">date de rendez-vous: </label>
+        <input type="date" class="form-control" id="inputdate" name="inputdate" formControlName='inputdate' placeholder="date de rendez-vous">
+        <div>         
+            <small *ngIf="myForm.controls['inputdate'].errors?.required"  class="alert alert-danger">date de rendez-vous is required</small>
+        </div>
+    </div>
+      <div class="form-group col-md-6">
+        <label for="nomHopital">nom de hopital</label>
+        <input type="text" class="form-control" id="nomHopital" name="nomHopital" formControlName='nomHopital'  placeholder="nom de Hopital">
+        <div>         
+            <small *ngIf="myForm.controls['nomHopital'].errors?.required"  class="alert alert-danger">nom de Hopital is required</small>
+        </div>
+    </div>
+    </div>
+    <div class="form-group">
+      <label for="gouvernerat">gouvernerat</label>
+      <input type="text" class="form-control" id="gouvernerat" name="gouvernerat" formControlName='gouvernerat'  placeholder="tunis ou ariana ...">
+      <div>         
+        <small *ngIf="myForm.controls['gouvernerat'].errors?.required"  class="alert alert-danger">gouvernerat is required</small>
+    </div>
+    </div>
+      <div class="form-group col-md-4">
+        <label for="inputState">etat de test</label>
+        <select id="inputState"  name="inputState"  formControlName='inputState'   class="form-control">
+          <option selected >Choose...</option>
+          <option value="0">en cours</option>
+          <option value="1">positive</option>
+          <option value="2">negative</option>
+
+        </select>
+        <div>         
+            <small *ngIf="myForm.controls['inputState'].errors?.required"  class="alert alert-danger">adresse is required</small>
+        </div>
+      </div>
+      
+      <div class="form-group col-md-4">
+        <label for="inputmedecin">liste medecin : </label>
+        <select id="inputmedecin"  name="inputmedecin" class="form-control"   formControlName='inputmedecin' >
+          <option *ngFor="let medecin of medecinList " [value]="medecin.id">{{medecin.prenom!}} {{medecin.nom!}}</option>
+        </select>
+        <p><span>You selected: </span><b>{{inputmedecin!.value}}</b></p>
+      <div>         
+        <small *ngIf="myForm.controls['inputmedecin'].errors?.required"  class="alert alert-danger">medecin is required</small>
+    </div>
+      </div>
+      <div class="form-group col-md-4">
+        <label for="inputpatient">liste patient : </label>
+        <select id="inputpatient" name="inputpatient" class="form-control" formControlName='inputpatient'  >
+          <option *ngFor="let patient of patientList " [value]="patient.id">{{patient.prenom!}}  {{patient.nom!}}</option>
+        </select>
+        <p><span>You selected: </span><b>{{inputpatient!.value}}   </b></p>
+        <div >         
+            <small *ngIf="myForm.controls['inputpatient'].errors?.required"  class="alert alert-danger">patient is required</small>
+        </div>
+      </div>
+
+    <button type="submit" class="btn btn-primary">ajouter rendez-vous</button>
+  </form>
+</div>

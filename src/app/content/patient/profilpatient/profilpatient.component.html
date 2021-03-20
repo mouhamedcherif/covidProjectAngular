@@ -1,0 +1,81 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">patient  </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item active">
+          <a class="nav-link" [routerLink]="['/profilpatient']"> profil</a>
+        </li>
+        <!-- <li class="nav-item active">
+          <a class="nav-link" routerLink="['/addhopital']" routerLinkActive="active-item">affectation rende-vous</a>
+        </li> -->
+      </ul>
+    </div>
+  </nav>
+  <div class="container">
+      <h1>merci de renseigner votre informations </h1>
+    <form [formGroup]="FormPatient" (ngSubmit)="savepatient()" >
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="nom">nom </label>
+            <input type="text" class="form-control" id="nom" name="nom" formControlName='nom'  placeholder="nom de patient">
+            <div>         
+                <small *ngIf="FormPatient.controls['nom'].errors?.required"  class="alert alert-danger">nom is required</small>
+            </div>
+        </div>
+        </div>
+
+        <div class="form-group">
+            <label for="prenom">prenom</label>
+            <input type="text" class="form-control" id="prenom" name="prenom" formControlName='prenom'  placeholder="prenom">
+            <div>         
+              <small *ngIf="FormPatient.controls['prenom'].errors?.required"  class="alert alert-danger">prenom is required</small>
+          </div>
+          </div>
+
+        <div class="form-group">
+          <label for="cin">cin</label>
+          <input type="text" class="form-control" id="cin" name="cin" formControlName='cin'  placeholder="cin">
+          <div>         
+            <small *ngIf="FormPatient.controls['cin'].errors?.required"  class="alert alert-danger">cin is required</small>
+        </div>
+        </div>
+        <div class="form-group">
+            <label for="age">age</label>
+            <input type="text" class="form-control" id="age" name="age" formControlName='age'  placeholder="age">
+            <div>         
+              <small *ngIf="FormPatient.controls['age'].errors?.required"  class="alert alert-danger">age is required</small>
+          </div>
+          </div>
+          <div class="form-group col-md-4">
+            <label for="sex">sex </label>
+            <select id="sex"  name="sex"  formControlName='sex'   class="form-control">
+              <option selected >Choose...</option>
+              <option value="homme">homme</option>
+              <option value="femme">femme</option>    
+            </select>
+            <div>         
+                <small *ngIf="FormPatient.controls['sex'].errors?.required"  class="alert alert-danger">sex is required</small>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="Region">Region</label>
+            <input type="text" class="form-control" id="Region" name="Region" formControlName='Region'  placeholder="tunis ou ariana ...">
+            <div>         
+              <small *ngIf="FormPatient.controls['Region'].errors?.required"  class="alert alert-danger">gouvernerat is required</small>
+          </div>
+          </div>
+
+          <div class="form-group">
+            <label for="numcnss">numero cnss</label>
+            <input type="text" class="form-control" id="numcnss" name="numcnss" formControlName='numcnss'  placeholder="numcnss">
+            <div>         
+              <small *ngIf="FormPatient.controls['numcnss'].errors?.required"  class="alert alert-danger">numcnss is required</small>
+          </div>
+          </div>
+    
+        <button type="submit" class="btn btn-primary">ajouter </button>
+      </form>
+    </div>

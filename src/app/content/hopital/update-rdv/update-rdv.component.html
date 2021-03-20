@@ -1,0 +1,71 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">admin </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item active">
+          <a class="nav-link" [routerLink]="['/listhopital']">liste des rendez-vous</a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" routerLink="['/addhopital']" routerLinkActive="active-item">affectation rende-vous</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <form [formGroup]="myFormUpdate" (ngSubmit)="updateRdev()" >
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="inputdate">date de rendez-vous: </label>
+        <input type="date" class="form-control" id="inputdate" name="inputdate" formControlName='inputdate' placeholder="date de rendez-vous">
+        <div>         
+            <small *ngIf="myFormUpdate.controls['inputdate'].errors?.required"  class="alert alert-danger">date de rendez-vous is required</small>
+        </div>
+    </div>
+      <div class="form-group col-md-6">
+        <label for="nomHopital">nom de hopital</label>
+        <input type="text" class="form-control" id="nomHopital" name="nomHopital" formControlName='nomHopital'  placeholder="nom de Hopital">
+        <div>         
+            <small *ngIf="myFormUpdate.controls['nomHopital'].errors?.required"  class="alert alert-danger">nom de Hopital is required</small>
+        </div>
+    </div>
+    </div>
+    <div class="form-group">
+      <label for="gouvernerat">gouvernerat</label>
+      <input type="text" class="form-control" id="gouvernerat" name="gouvernerat" formControlName='gouvernerat'  placeholder="tunis ou ariana ...">
+      <div>         
+        <small *ngIf="myFormUpdate.controls['gouvernerat'].errors?.required"  class="alert alert-danger">gouvernerat is required</small>
+    </div>
+    </div>
+      <div class="form-group col-md-4">
+        <label for="inputState">etat de test</label>
+        <select id="inputState"  name="inputState"  formControlName='inputState'   class="form-control">
+          <option selected >Choose...</option>
+          <option value="0">en cours</option>
+          <option value="1">positive</option>
+          <option value="2">negative</option>
+
+        </select>
+        <div>         
+            <small *ngIf="myFormUpdate.controls['inputState'].errors?.required"  class="alert alert-danger">adresse is required</small>
+        </div>
+      </div>
+      
+      <div class="form-group col-md-4">
+        <label for="inputmedecin"> medecin : </label>
+        <!-- <select id="inputmedecin" class="form-control">
+          <option *ngFor="let medecin of medecinList " [value]="medecin.id">{{medecin.prenom}} {{medecin.nom}}</option>
+        </select> -->
+        <label >{{rdevList.medecin.nom}}</label>
+      </div>
+      <div class="form-group col-md-4">
+        <label for="inputpatient"> patient : </label>
+        <!-- <select id="inputpatient" class="form-control">
+          <option *ngFor="let patient of patientList " [value]="patient.id">{{patient.prenom}}  {{patient.nom}}</option>
+        </select> -->
+        <label >{{rdevList.patient.nom}}</label>
+
+      </div>
+    <button type="submit" class="btn btn-primary">modifier</button>
+  </form>
