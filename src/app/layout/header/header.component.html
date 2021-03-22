@@ -14,6 +14,8 @@
   </div>
 
 </div> 
+<div class="container">
+
 <!-- Creates the bootstrap modal where the image will appear -->
 <div [style.display]="showModal ? 'block' : 'none'" class="modal" id="imagemodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 <div class="modal-dialog">
@@ -77,10 +79,10 @@
                 </div>
                 <label>Vous etes : </label>
                 <div class="form-check">
-                  <input type="radio" formControlName="role" name="role" class="form-check-input" value="patient"> patient
+                  <input type="radio" style="float: right;" formControlName="role" name="role" class="form-check-input" value="patient"> patient
                 </div>
                 <div class="form-check">
-                  <input type="radio" formControlName="role" name="role" class="form-check-input" value="medecin"> medecin
+                  <input type="radio" style="float: right;" formControlName="role" name="role" class="form-check-input" value="medecin"> medecin
 
                 </div>
             <button type="submit" class="btn btn-primary" style="float: right;"> Submit</button>
@@ -129,6 +131,7 @@
       </div>
     </div>
     </div>
+</div>
 <section class="home">
 
 <div class="main">

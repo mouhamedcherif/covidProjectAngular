@@ -127,24 +127,31 @@ async login() {
           let token = res.token;
           const IdUser = res.id;
           const role = res.role;
+          alert(IdUser + '' + role );
           localStorage.setItem('myToken', token);
           localStorage.setItem('IdUser', IdUser);
           localStorage.setItem('role', role);
 
           // tslint:disable-next-line:whitespace
           if( role === 'medecin'){
-            this.router.navigate(['/profilmedecin']);
+            await this.router.navigate(['/profilmedecin']);
+            await location.reload();
+            await this.router.navigate(['/profilmedecin']);
 
           }
           if ( role === 'patient'){
-            this.router.navigate(['/profilpatient']);
+            await this.router.navigate(['/profilpatient']);
+
+            await location.reload();
+            await this.router.navigate(['/profilpatient']);
 
           }
           if ( role === 'admin'){
-            this.router.navigate(['/listhopital']);
+            await this.router.navigate(['/listhopital']);
+            await location.reload();
+            await this.router.navigate(['/listhopital']);
 
           }
-          await location.reload();
 
         },
         err => {
@@ -235,13 +242,21 @@ if (this.submitted)
 }
 }
 // tslint:disable-next-line:typedef
-logout(){
+async logout(){
   localStorage.removeItem('myToken');
   localStorage.removeItem('IdUser');
+  localStorage.removeItem('role');
+  localStorage.removeItem('patient');
+  localStorage.removeItem('medecin');
 
-  location.reload();
 
-  this.router.navigate(['/']);
+  await this.router.navigate(['/']);
+
+  await location.reload();
+
+
+  await this.router.navigate(['/']);
+
 
 }
 

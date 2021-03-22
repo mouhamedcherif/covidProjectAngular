@@ -1,3 +1,5 @@
+import { AcceptRdvComponent } from './content/medecin/accept-rdv/accept-rdv.component';
+import { DemandeRdvComponent } from './content/patient/demande-rdv/demande-rdv.component';
 import { ProfilmedcinComponent } from './content/medecin/profilmedcin/profilmedcin.component';
 import { UpdateRdvComponent } from './content/hopital/update-rdv/update-rdv.component';
 import { ListhopitalComponent } from './content/hopital/listhopital/listhopital.component';
@@ -18,7 +20,13 @@ const routes: Routes = [
        { path: 'addhopital', component: AddhopitalComponent },
        { path: 'modifhopital/:id', component: UpdateRdvComponent },
        { path: 'profilpatient', component: ProfilpatientComponent },
-       { path: 'profilmedecin', component: ProfilmedcinComponent }
+       { path: 'profilmedecin', component: ProfilmedcinComponent },
+       { path: 'profilmedecin', component: ProfilmedcinComponent },
+       { path: 'demandeRdv', component: DemandeRdvComponent },
+       { path: 'acceptRdv', component: AcceptRdvComponent }
+
+
+
         // consultPatient
       // { path: 'register', component: RegisterComponent }
       // { path: '', component: PostsComponent },

@@ -15,17 +15,60 @@ export class HopitalService {
 
 private showallrdv = 'http://127.0.0.1:8082/api/covid/rendv';
 private showmedecin = 'http://127.0.0.1:8082/api/covid/Medecin';
-private showpatient = 'http://127.0.0.1:8082/api/covid/Patient';
+private showpatient = 'http://127.0.0.1:8082/api/covid/PatientRdv';
 private DELETErdev = 'http://127.0.0.1:8082/api/covid/rendvdel/';
 private updaterdev = 'http://127.0.0.1:8082/api/covid/rendvput/';
 private rendevtById = 'http://127.0.0.1:8082/api/covid/rendv/';
 private PostForum = 'http://127.0.0.1:8082/api/covid/rendv/ajout';
 private getByidmedecin = 'http://127.0.0.1:8082/api/covid/Medecin/';
 private getByidPatient = 'http://127.0.0.1:8082/api/covid/Patient/';
+private getRendezvous = 'http://127.0.0.1:8082/api/covid/demande/ajout';
+private getpatientrdv = 'http://127.0.0.1:8082/api/covid/rendvpatient';
+private getetatpatientrdv = 'http://127.0.0.1:8082/api/covid/etat';
+private getMedecintrdv = 'http://127.0.0.1:8082/api/covid/rendvMedecin';
+private accept = 'http://127.0.0.1:8082/api/covid/rendvputmedecinaccept';
+private dontaccept = 'http://127.0.0.1:8082/api/covid/rendvMedecin';
+
+
 
 constructor(private http: HttpClient) { }
+// tslint:disable-next-line:typedef
+acceptation( id: any) {
+  let params = new HttpParams();
+  params = params.append('id', id);
+  return  this.http.put<any>(this.accept, '', { params } );
+}
+// tslint:disable-next-line:typedef
+refuse( id: any) {
+  let params = new HttpParams();
+  params = params.append('id', id);
+  return  this.http.put<any>(this.dontaccept , '', { params } );
+}
+// tslint:disable-next-line:typedef
+getRdvmedein(id: any) {
+  let params = new HttpParams();
+  params = params.append('idMedecin', id);
+  const data = this.http.get<any>(this.getMedecintrdv , { params });
 
+  return data;
+ }
+// tslint:disable-next-line:typedef
+getetatRdvpatient(id: any) {
+  let params = new HttpParams();
+  params = params.append('idPatient', id);
+  const data = this.http.get<any>(this.getetatpatientrdv, { params });
 
+  return data;
+ }
+
+// tslint:disable-next-line:typedef
+getRdvpatient(id: any) {
+  let params = new HttpParams();
+  params = params.append('idPatient', id);
+  const data = this.http.get<any>(this.getpatientrdv , { params });
+
+  return data;
+ }
 
   // tslint:disable-next-line:typedef
   getAllRdv() {
@@ -80,5 +123,16 @@ getmedcinbyId(id: any ) {
 getPatientbyId(id: any ) {
   return  this.http.get<any>(this.getByidPatient + id);
 
+}
+// tslint:disable-next-line:typedef
+demandRendezvous( pat: any) {
+  let params = new HttpParams();
+  params = params.append('idPatient', pat);
+  const headers = new HttpHeaders();
+  headers.append('Access-Control-Allow-Origin', '*');
+  // headers.append('Access-Control-Allow-Origin', 'http://127.0.0.1:8082');
+  headers.append('Access-Control-Allow-Credentials', 'true');
+  // tslint:disable-next-line:object-literal-shorthand
+  return  this.http.post<any>(this.getRendezvous , '', { headers , params } );
 }
 }

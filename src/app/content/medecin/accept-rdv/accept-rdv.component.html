@@ -1,0 +1,63 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">medecin  </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item active">
+          <a class="nav-link" [routerLink]="['/profilmedecin']"> profil</a>
+        </li>
+        <li class="nav-item active">
+            <a class="nav-link" [routerLink]="['/acceptRdv']"> mes Rendez-vous</a>
+        </li>
+      </ul>
+    </div>
+</nav>
+<div class="container">
+  <div>
+    <div class="row">
+        <div class="col">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>date Rendez-vous</th>
+                        <th>nom Hopital</th>
+                        <th>gouvernerat</th>
+                        <th>etat de test</th>
+                        <th>medecin</th>
+                        <th>patient</th>
+    
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let rdev of rdevList ">
+                        <th>{{ rdev.id }}</th>
+                        <td>{{ rdev.dateRv }}</td>
+                        <td>{{ rdev.nomHopital }}</td>
+                        <td>{{ rdev.gouvernerat }}</td>
+                        <td >   
+                            <div *ngIf="rdev.etatest == 0" [style.color]="'blue'"> <label>en cours  </label></div>
+                            <div *ngIf="rdev.etatest == 1" [style.color]="'green'"> <label>positive  </label></div>
+                            <div *ngIf="rdev.etatest == 2" [style.color]="'red'"> <label>negative  </label></div>
+    
+                        </td>
+                        <td>{{ rdev.medecin.prenom }}</td>
+                        <td>{{ rdev.patient.prenom }}</td>
+                    <td>
+                      <button class="btn btn-success" (click)="accept(rdev.id)">accept</button>
+                      <button class="btn btn-danger mx-3" (click)="delete( rdev.id )">delete</button>
+
+                  </td>
+                </tr>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+
+</div>

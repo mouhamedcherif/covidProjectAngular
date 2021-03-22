@@ -8,9 +8,9 @@
         <li class="nav-item active">
           <a class="nav-link" [routerLink]="['/profilpatient']"> profil</a>
         </li>
-        <!-- <li class="nav-item active">
-          <a class="nav-link" routerLink="['/addhopital']" routerLinkActive="active-item">affectation rende-vous</a>
-        </li> -->
+        <li class="nav-item active">
+          <a class="nav-link" [routerLink]="['/demandeRdv']"> demander un Rendez-vous</a>
+      </li>
       </ul>
     </div>
   </nav>
@@ -29,7 +29,7 @@
 
         <div class="form-group">
             <label for="prenom">prenom</label>
-            <input type="text" class="form-control" id="prenom" name="prenom" formControlName='prenom'  placeholder="prenom">
+            <input type="text" [readonly]= "isfind" class="form-control" id="prenom" name="prenom" formControlName='prenom'  placeholder="prenom">
             <div>         
               <small *ngIf="FormPatient.controls['prenom'].errors?.required"  class="alert alert-danger">prenom is required</small>
           </div>
@@ -37,7 +37,7 @@
 
         <div class="form-group">
           <label for="cin">cin</label>
-          <input type="text" class="form-control" id="cin" name="cin" formControlName='cin'  placeholder="cin">
+          <input type="text" [readonly]= "isfind" class="form-control" id="cin" name="cin" formControlName='cin'  placeholder="cin">
           <div>         
             <small *ngIf="FormPatient.controls['cin'].errors?.required"  class="alert alert-danger">cin is required</small>
         </div>
@@ -70,12 +70,14 @@
 
           <div class="form-group">
             <label for="numcnss">numero cnss</label>
-            <input type="text" class="form-control" id="numcnss" name="numcnss" formControlName='numcnss'  placeholder="numcnss">
+            <input type="text" [readonly]= "isfind"  class="form-control" id="numcnss" name="numcnss" formControlName='numcnss'  placeholder="numcnss">
             <div>         
               <small *ngIf="FormPatient.controls['numcnss'].errors?.required"  class="alert alert-danger">numcnss is required</small>
           </div>
           </div>
     
-        <button type="submit" class="btn btn-primary">ajouter </button>
+        <button  *ngIf="!isfind" type="submit" class="btn btn-primary">ajouter </button>
       </form>
+      <button  *ngIf="isfind" (click)="update()" class="btn btn-warning">modifier </button>
+      <button  *ngIf="isfind"  (click)="delete()" class=" btn btn-danger mx-3">supprimer </button>
     </div>

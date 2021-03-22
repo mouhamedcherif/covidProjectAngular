@@ -14,6 +14,8 @@ import { AddhopitalComponent } from './content/hopital/addhopital/addhopital.com
 import { UpdateRdvComponent } from './content/hopital/update-rdv/update-rdv.component';
 import { ProfilmedcinComponent } from './content/medecin/profilmedcin/profilmedcin.component';
 import { ProfilpatientComponent } from './content/patient/profilpatient/profilpatient.component';
+import { DemandeRdvComponent } from './content/patient/demande-rdv/demande-rdv.component';
+import { AcceptRdvComponent } from './content/medecin/accept-rdv/accept-rdv.component';
 
 
 @NgModule({
@@ -26,7 +28,9 @@ import { ProfilpatientComponent } from './content/patient/profilpatient/profilpa
     AddhopitalComponent,
     UpdateRdvComponent,
     ProfilmedcinComponent,
-    ProfilpatientComponent
+    ProfilpatientComponent,
+    DemandeRdvComponent,
+    AcceptRdvComponent
   ],
   imports: [
     BrowserModule,
